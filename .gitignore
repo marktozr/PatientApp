@@ -2,3 +2,5 @@
 x64/
 Generated\ Files/
 .vs/
+*.vcxproj.user
+enc_temp_folder/

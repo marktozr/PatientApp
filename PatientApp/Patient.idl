@@ -1,0 +1,10 @@
+namespace PatientApp
+{
+	runtimeclass Patient : Microsoft.UI.Xaml.Data.INotifyPropertyChanged
+	{
+		Patient();
+		String Name;
+		Int32 Age;
+		Int32 BalanceDue;
+	}
+}
