@@ -8,47 +8,58 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="Patient Data">
+    Title="Patient Management App">
 
-    <StackPanel Orientation="Vertical">
-        <!--<TextBlock Text="{x:Bind SelectedPatient.Name, Mode=TwoWay}" FontSize="20" Margin="10"/>-->
-        <ListView x:Name="patientListView"
-                  Margin="30,0,0,30"
-                  SelectionMode="None"
-                  IsItemClickEnabled="True"
-                  ItemsSource="{x:Bind PatientsList, Mode=TwoWay}"
-                  ItemClick="patientListView_ItemClick"
-                  >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="local:Patient">
-                    <Grid Height="Auto" Margin="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{x:Bind Name, Mode=TwoWay}" Margin="5"/>
-                        <TextBlock Grid.Column="1" Text="{x:Bind Age, Mode=TwoWay}" Margin="5"  />
-                        <TextBlock Grid.Column="2" Text="{x:Bind BalanceDue, Mode=TwoWay}" Margin="5" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            
-        </ListView>
-
-        <ContentDialog  x:DefaultBindMode="TwoWay" x:Name="EditPatientDlg"
-                       IsPrimaryButtonEnabled="True" PrimaryButtonText="OK" 
-                       IsSecondaryButtonEnabled="true" SecondaryButtonText="Cancel" 
-                       PrimaryButtonClick="EditPatient_PrimaryButtonClick"
-                       >
-            <StackPanel>
-                <TextBox Text="{x:Bind SelectedPatient.Name, Mode=TwoWay}" />
-                <TextBox Text="{x:Bind SelectedPatient.Age, Mode=TwoWay}" PreviewKeyDown="TextBlock_PreviewKeyDown" />
-                <TextBox Text="{x:Bind SelectedPatient.BalanceDue, Mode=TwoWay}" PreviewKeyDown="TextBlock_PreviewKeyDown" />
+        <Border
+            x:Name="AppTitleBar"
+            Background="Black"
+            Grid.Column="1"
+            Grid.Row="0"
+            Height="{Binding ElementName=NavView, Path=CompactPaneLength}"
+            Margin="48,0,0,0"
+            VerticalAlignment="Stretch"
+            AutomationProperties.AutomationId="AppTitleBar"
+            Canvas.ZIndex="1"
+            IsHitTestVisible="True">
+            <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal">
+                <TextBlock
+                    x:Name="AppTitle"
+                    Margin="12,0,0,0"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource CaptionTextBlockStyle}"
+                    Text="Patient Management" />
             </StackPanel>
-        </ContentDialog>
+        </Border>
+        <NavigationView 
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            x:Name="NavView"
+            PaneDisplayMode="LeftCompact"
+            IsSettingsVisible="False"
+            Loaded="NavView_Loaded"
+            SelectionChanged="NavView_SelectionChanged"
+            IsTitleBarAutoPaddingEnabled="True">
 
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home" Content="Home" Tag="home"/>
+                <NavigationViewItem Icon="People" Content="Patients" Tag="patients"/>
+                <NavigationViewItem Icon="Calendar" Content="Schedule" Tag="schedule"/>
+            </NavigationView.MenuItems>
 
-    </StackPanel>
+            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
+
+        </NavigationView>
+
+    </Grid>
+
 </Window>

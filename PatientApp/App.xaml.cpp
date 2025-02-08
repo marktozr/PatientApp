@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "App.xaml.h"
 #include "MainWindow.xaml.h"
+#include "HomePage.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml::Controls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,6 +40,17 @@ namespace winrt::PatientApp::implementation
     void App::OnLaunched([[maybe_unused]] LaunchActivatedEventArgs const& e)
     {
         window = make<MainWindow>();
+        window.ExtendsContentIntoTitleBar(true);
+        window.Title(L"Patient Management App");
+
+        auto top = window.Content().as<Grid>();
+
+        auto appTitleBar = top.FindName(L"AppTitleBar").as<Border>();
+        window.SetTitleBar(appTitleBar);
+
+        auto rootFrame = top.FindName(L"ContentFrame").as<Frame>();
+        rootFrame.Navigate(xaml_typename<PatientApp::HomePage>());
+
         window.Activate();
     }
 }

@@ -1,12 +1,8 @@
-import "Patient.idl";
-
 namespace PatientApp
 {
     [default_interface]
     runtimeclass MainWindow : Microsoft.UI.Xaml.Window
     {
         MainWindow();
-        Windows.Foundation.Collections.IObservableVector<Patient> PatientsList;
-		Patient SelectedPatient;
-}
+    }
 }
