@@ -45,7 +45,7 @@
             Grid.RowSpan="2"
             x:Name="NavView"
             PaneDisplayMode="LeftCompact"
-            IsSettingsVisible="False"
+            IsSettingsVisible="True"
             Loaded="NavView_Loaded"
             SelectionChanged="NavView_SelectionChanged"
             IsTitleBarAutoPaddingEnabled="True">
@@ -53,6 +53,7 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="home"/>
                 <NavigationViewItem Icon="People" Content="Patients" Tag="patients"/>
+                <NavigationViewItem Icon="ContactInfo" Content="Patient" Tag="patientinfo"/>
                 <NavigationViewItem Icon="Calendar" Content="Schedule" Tag="schedule"/>
             </NavigationView.MenuItems>
 

@@ -1,8 +1,12 @@
+import "PatientViewModel.idl";
+
 namespace PatientApp
 {
     [default_interface]
     runtimeclass MainWindow : Microsoft.UI.Xaml.Window
     {
         MainWindow();
+
+        PatientViewModel MainViewModel{ get; };
     }
 }

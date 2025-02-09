@@ -13,7 +13,7 @@
                   Margin="30,0,0,30"
                   SelectionMode="None"
                   IsItemClickEnabled="True"
-                  ItemsSource="{x:Bind PatientsList, Mode=TwoWay}"
+                  ItemsSource="{x:Bind MainViewModel.PatientList, Mode=OneWay}"
                   ItemClick="patientListView_ItemClick"
                   >
 

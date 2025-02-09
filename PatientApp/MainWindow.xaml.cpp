@@ -15,19 +15,17 @@ using namespace winrt::Microsoft::UI::Xaml::Controls;
 
 namespace winrt::PatientApp::implementation
 {
- 
-
-    void MainWindow::NavView_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    winrt::PatientApp::PatientViewModel MainWindow::MainViewModel()
     {
-
+        // load it if not ready
+        return m_MainViewModel;
     }
-
 
     void MainWindow::NavView_SelectionChanged(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs const& args)
     {
         if (args.IsSettingsSelected())
         {
-            //ContentFrame().Navigate(xaml_typename<PatientApp::SettingsPage>());
+            ContentFrame().Navigate(xaml_typename<PatientApp::BlankPage>());
         }
         else
         {
@@ -35,16 +33,25 @@ namespace winrt::PatientApp::implementation
             if (selectedItem != nullptr)
             {
                 hstring selectedItemTag = selectedItem.Tag().as<hstring>();
-                if (selectedItemTag == L"Home")
+                if (selectedItemTag == L"home")
                 {
 					ContentFrame().Navigate(xaml_typename<PatientApp::HomePage>());
                 }
-                else if (selectedItemTag == L"Patients")
+                else if (selectedItemTag == L"patients")
                 {
-                    //ContentFrame().Navigate(xaml_typename<PatientApp::PatientsPage>());
+                    ContentFrame().Navigate(xaml_typename<PatientApp::AllPatientsPage>());
+                }
+                else if (selectedItemTag == L"patientinfo")
+                {
+                    ContentFrame().Navigate(xaml_typename<PatientApp::PatientPage>());
                 }
             }
         }
+
+    }
+
+    void MainWindow::NavView_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
 
     }
 

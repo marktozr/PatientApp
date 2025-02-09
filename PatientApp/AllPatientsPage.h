@@ -1,28 +1,25 @@
 ﻿#pragma once
 
-#include "HomePage.g.h"
+#include "AllPatientsPage.g.h"
 #include "Patient.h"
 #include "PatientViewModel.h"
 
 namespace winrt::PatientApp::implementation
 {
-    struct HomePage : HomePageT<HomePage>
+    struct AllPatientsPage : AllPatientsPageT<AllPatientsPage>
     {
-        HomePage() 
+        AllPatientsPage() 
         {
             // Xaml objects should not call InitializeComponent during construction.
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
-
+        winrt::PatientApp::PatientViewModel MainViewModel();
 
         winrt::PatientApp::Patient SelectedPatient();
         void SelectedPatient(winrt::PatientApp::Patient const& value);
 
-        winrt::PatientApp::PatientViewModel MainViewModel();
-
     private:
         winrt::Windows::Foundation::Collections::IObservableVector<winrt::PatientApp::Patient> m_PatientList;
-
 
         /// <summary>
         /// For binding to the edit dialog
@@ -45,8 +42,7 @@ namespace winrt::PatientApp::implementation
 
 namespace winrt::PatientApp::factory_implementation
 {
-    struct HomePage : HomePageT<HomePage, implementation::HomePage>
+    struct AllPatientsPage : AllPatientsPageT<AllPatientsPage, implementation::AllPatientsPage>
     {
-
     };
 }

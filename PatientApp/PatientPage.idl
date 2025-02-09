@@ -1,0 +1,9 @@
+namespace PatientApp
+{
+    [default_interface]
+    runtimeclass PatientPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        PatientPage();
+        Int32 MyProperty;
+    }
+}

@@ -1,0 +1,14 @@
+import "Patient.idl";
+
+namespace PatientApp
+{
+    [bindable]
+    [default_interface]
+    runtimeclass PatientViewModel 
+    {
+        PatientViewModel();
+
+        Windows.Foundation.Collections.IObservableVector<Patient> PatientList{ get; };
+        Patient SelectedPatient;
+    }
+}

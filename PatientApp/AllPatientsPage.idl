@@ -3,9 +3,9 @@ import "PatientViewModel.idl";
 namespace PatientApp
 {
     [default_interface]
-    runtimeclass HomePage : Microsoft.UI.Xaml.Controls.Page
+    runtimeclass AllPatientsPage : Microsoft.UI.Xaml.Controls.Page
     {
-        HomePage();
+        AllPatientsPage();
 
         PatientViewModel MainViewModel{ get; };
         Patient SelectedPatient;
